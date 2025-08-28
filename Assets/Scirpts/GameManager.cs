@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour
 
     public PopupBank popupBank;
 
-
     private void Awake()
     {
         InitializeSingleton();
@@ -37,7 +36,7 @@ public class GameManager : MonoBehaviour
         popupBank.Refresh(userData);
     }
 
-   private void InitializeSingleton()
+    private void InitializeSingleton()
     {
         // 만약 인스턴스가 없으면 자신(this)을 인스턴스로 지정
         if (_instance == null)
@@ -50,6 +49,38 @@ public class GameManager : MonoBehaviour
         {
             // 이미 인스턴스가 있으면 자신을 파괴 → 중복 생성 방지
             Destroy(gameObject);
+        }
+    }
+
+    public void AddBtn(int amount)
+    {
+        if (userData.cash >= amount)
+        {
+            userData.balance += amount;
+            userData.cash -= amount;
+
+            saveManager.SaveUserData();
+            popupBank.Refresh(userData);
+        }
+        else
+        {
+            popupBank.popupPanel.SetActive(true);
+        }
+    }
+
+    public void SubBtn(int amount)
+    {
+        if (userData.balance >= amount)
+        {
+            userData.balance -= amount;
+            userData.cash += amount;
+
+            saveManager.SaveUserData();
+            popupBank.Refresh(userData);
+        }
+        else
+        {
+            popupBank.popupPanel.SetActive(true);
         }
     }
 }

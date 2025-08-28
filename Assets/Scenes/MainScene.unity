@@ -1476,6 +1476,22 @@ MonoBehaviour:
   atmMenu: {fileID: 241644329}
   depositMenu: {fileID: 290630222}
   withdrawalMenu: {fileID: 1700191422}
+  firstAddBtn: {fileID: 557620060}
+  secondAddBtn: {fileID: 1807966713}
+  thirdAddBtn: {fileID: 428384303}
+  addEnterBtn: {fileID: 1495502025}
+  firstSubBtn: {fileID: 841240793}
+  secondSubBtn: {fileID: 1393592018}
+  thirdSubBtn: {fileID: 234694545}
+  subEnterBtn: {fileID: 2100801716}
+  addInput: {fileID: 2126686460}
+  subInput: {fileID: 944608237}
+  popupPanel: {fileID: 1008761704}
+  firstAmount: 10000
+  secondAmount: 30000
+  thirdAmount: 50000
+  addInputAmount: 0
+  subInputAmount: 0
 --- !u!1 &357986742
 GameObject:
   m_ObjectHideFlags: 0

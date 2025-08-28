@@ -18,9 +18,34 @@ public class PopupBank : MonoBehaviour
     [SerializeField] GameObject depositMenu;
     [SerializeField] GameObject withdrawalMenu;
 
+    [Header("AddSubAction")]
+    [SerializeField] Button firstAddBtn;
+    [SerializeField] Button secondAddBtn;
+    [SerializeField] Button thirdAddBtn;
+    [SerializeField] Button addEnterBtn;
+
+    [SerializeField] Button firstSubBtn;
+    [SerializeField] Button secondSubBtn;
+    [SerializeField] Button thirdSubBtn;
+    [SerializeField] Button subEnterBtn;
+
+    [Header("InputNumber")]
+    [SerializeField] TMP_InputField addInput;
+    [SerializeField] TMP_InputField subInput;
+
+    [Header("PopupPanel")]
+    [SerializeField] public GameObject popupPanel;
+
     //[Header("SighUpInfo")]
 
     //[Header("SighInInfo")]
+
+    public int firstAmount = 10000;
+    public int secondAmount = 30000;
+    public int thirdAmount = 50000;
+
+    public int addInputAmount;
+    public int subInputAmount;
 
     private void Start()
     {
@@ -55,11 +80,41 @@ public class PopupBank : MonoBehaviour
         withdrawalMenu.SetActive(false);
     }
 
+    public void SaveAddInputAmount(string text)
+    {
+        addInputAmount = int.Parse(text);
+    }
+    public void SaveSubInputAmount()
+    {
+        subInputAmount = int.Parse(subInput.text);
+    }
+
+    private void Add(int amount)
+    {
+        GameManager.Instance.AddBtn(amount);
+    }
+    private void Sub(int amount)
+    {
+        GameManager.Instance.SubBtn(amount);
+    }
+
     public void OnClickBtn()
     {
         depositBtn.onClick.AddListener(() => EnterMenu(true));
         withdrawalBtn.onClick.AddListener(() => EnterMenu(false));
         depositBackBtn.onClick.AddListener(ExitMenu);
         withdrawalBackBtn.onClick.AddListener(ExitMenu);
+
+        firstAddBtn.onClick.AddListener(() => Add(firstAmount));
+        secondAddBtn.onClick.AddListener(() => Add(secondAmount));
+        thirdAddBtn.onClick.AddListener(() => Add(thirdAmount));
+
+        firstSubBtn.onClick.AddListener(() => Sub(firstAmount));
+        secondSubBtn.onClick.AddListener(() => Sub(secondAmount));
+        thirdSubBtn.onClick.AddListener(() => Sub(thirdAmount));
+
+        subEnterBtn.onClick.AddListener(() => Sub(subInputAmount));
+        addInput.onEndEdit.AddListener(SaveAddInputAmount);
+
     }
 }
