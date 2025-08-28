@@ -18,14 +18,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private UserData _userData;
+    [SerializeField] private UserData _userData;
     public UserData userData
     {
         get { return _userData; }
-        set { _userData = value; }
     }
 
+    public SaveManager saveManager;
+
+    public PopupBank popupBank;
+
+
     private void Awake()
+    {
+        InitializeSingleton();
+        saveManager.SavePath();
+        saveManager.LoadUserData(userData);
+        popupBank.Refresh(userData);
+    }
+
+   private void InitializeSingleton()
     {
         // 만약 인스턴스가 없으면 자신(this)을 인스턴스로 지정
         if (_instance == null)

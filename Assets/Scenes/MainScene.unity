@@ -1363,6 +1363,7 @@ GameObject:
   - component: {fileID: 338018773}
   - component: {fileID: 338018772}
   - component: {fileID: 338018771}
+  - component: {fileID: 338018775}
   m_Layer: 5
   m_Name: ATMUI
   m_TagString: Untagged
@@ -1453,6 +1454,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &338018775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338018770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858cf0591cae4e4d97b8af0b0caf9f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  balanceText: {fileID: 367552296}
+  cashText: {fileID: 445333202}
+  nameText: {fileID: 446236220}
+  depositBtn: {fileID: 1172952277}
+  withdrawalBtn: {fileID: 1318800872}
+  depositBackBtn: {fileID: 2138184751}
+  withdrawalBackBtn: {fileID: 835252421}
+  atmMenu: {fileID: 241644329}
+  depositMenu: {fileID: 290630222}
+  withdrawalMenu: {fileID: 1700191422}
 --- !u!1 &357986742
 GameObject:
   m_ObjectHideFlags: 0
@@ -5898,6 +5921,59 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &1651201153
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1651201155}
+  - component: {fileID: 1651201154}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1651201154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651201153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9affebbe67c3e498d98222d7434855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _userData:
+    userID: 
+    userName: 
+    userPW: 
+    balance: 0
+    cash: 0
+  saveManager:
+    path: 
+  popupBank: {fileID: 338018775}
+--- !u!4 &1651201155
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651201153}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1700191422
 GameObject:
   m_ObjectHideFlags: 0
@@ -7067,3 +7143,4 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 338018774}
   - {fileID: 72301511}
+  - {fileID: 1651201155}
