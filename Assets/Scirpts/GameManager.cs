@@ -31,8 +31,9 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         InitializeSingleton();
+        saveManager = new SaveManager();
         saveManager.SavePath();
-        saveManager.LoadUserData(userData);
+        saveManager.LoadUserData(ref _userData);
         popupBank.Refresh(userData);
     }
 
@@ -59,7 +60,7 @@ public class GameManager : MonoBehaviour
             userData.balance += amount;
             userData.cash -= amount;
 
-            saveManager.SaveUserData();
+            saveManager.SaveUserData(userData);
             popupBank.Refresh(userData);
         }
         else
@@ -75,7 +76,7 @@ public class GameManager : MonoBehaviour
             userData.balance -= amount;
             userData.cash += amount;
 
-            saveManager.SaveUserData();
+            saveManager.SaveUserData(userData);
             popupBank.Refresh(userData);
         }
         else

@@ -40,6 +40,8 @@ public class PopupBank : MonoBehaviour
 
     //[Header("SighInInfo")]
 
+    //[Header("SentCash")]
+
     public int firstAmount = 10000;
     public int secondAmount = 30000;
     public int thirdAmount = 50000;
@@ -49,7 +51,7 @@ public class PopupBank : MonoBehaviour
 
     private void Start()
     {
-        OnClickBtn();
+        InitializeBtn();
     }
 
     public void Refresh(UserData data)
@@ -62,7 +64,6 @@ public class PopupBank : MonoBehaviour
     public void EnterMenu(bool isDeposit)
     {
         atmMenu.SetActive(false);
-        
         if (isDeposit)
         {
             depositMenu.SetActive(true);
@@ -84,9 +85,10 @@ public class PopupBank : MonoBehaviour
     {
         addInputAmount = int.Parse(text);
     }
-    public void SaveSubInputAmount()
+
+    public void SaveSubInputAmount(string text)
     {
-        subInputAmount = int.Parse(subInput.text);
+        subInputAmount = int.Parse(text);
     }
 
     private void Add(int amount)
@@ -98,7 +100,7 @@ public class PopupBank : MonoBehaviour
         GameManager.Instance.SubBtn(amount);
     }
 
-    public void OnClickBtn()
+    public void InitializeBtn()
     {
         depositBtn.onClick.AddListener(() => EnterMenu(true));
         withdrawalBtn.onClick.AddListener(() => EnterMenu(false));
@@ -113,8 +115,11 @@ public class PopupBank : MonoBehaviour
         secondSubBtn.onClick.AddListener(() => Sub(secondAmount));
         thirdSubBtn.onClick.AddListener(() => Sub(thirdAmount));
 
+        addEnterBtn.onClick.AddListener(() => Add(addInputAmount));
         subEnterBtn.onClick.AddListener(() => Sub(subInputAmount));
+        
         addInput.onEndEdit.AddListener(SaveAddInputAmount);
+        subInput.onEndEdit.AddListener(SaveSubInputAmount);
 
     }
 }

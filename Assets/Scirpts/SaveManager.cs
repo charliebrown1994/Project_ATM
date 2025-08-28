@@ -11,12 +11,13 @@ public class SaveManager
     {
         path = Path.Combine(Application.persistentDataPath, "userData.json");
     }
-    public void SaveUserData()
+    public void SaveUserData(UserData data)
     {
-        string save = JsonUtility.ToJson(GameManager.Instance.userData);
+        string save = JsonUtility.ToJson(data);
         File.WriteAllText(path, save);
+
     }
-    public void LoadUserData(UserData data)
+    public void LoadUserData(ref UserData data)
     {
         if (File.Exists(path))
         {
