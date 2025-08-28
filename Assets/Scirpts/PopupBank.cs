@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,11 +13,14 @@ public class PopupBank : MonoBehaviour
     [Header("ButtonAction")]
     [SerializeField] Button depositBtn;
     [SerializeField] Button withdrawalBtn;
+    [SerializeField] Button sentBtn;
     [SerializeField] Button depositBackBtn;
     [SerializeField] Button withdrawalBackBtn;
+    [SerializeField] Button sentBackBtn;
     [SerializeField] GameObject atmMenu;
     [SerializeField] GameObject depositMenu;
     [SerializeField] GameObject withdrawalMenu;
+    [SerializeField] GameObject sentMenu;
 
     [Header("AddSubAction")]
     [SerializeField] Button firstAddBtn;
@@ -36,10 +40,6 @@ public class PopupBank : MonoBehaviour
     [Header("PopupPanel")]
     [SerializeField] public GameObject popupPanel;
 
-    //[Header("SighUpInfo")]
-
-    //[Header("SighInInfo")]
-
     //[Header("SentCash")]
 
     public int firstAmount = 10000;
@@ -48,6 +48,13 @@ public class PopupBank : MonoBehaviour
 
     public int addInputAmount;
     public int subInputAmount;
+
+    public enum BankMenuType
+    {
+        Deposit,    // 입금
+        Withdrawal, // 출금
+        Sent        // 송금
+    }
 
     private void Start()
     {
@@ -61,17 +68,12 @@ public class PopupBank : MonoBehaviour
         cashText.text = data.cash.ToString("N0");
     }
 
-    public void EnterMenu(bool isDeposit)
+    public void EnterMenu(BankMenuType type)
     {
         atmMenu.SetActive(false);
-        if (isDeposit)
-        {
-            depositMenu.SetActive(true);
-        }
-        else
-        {
-            withdrawalMenu.SetActive(true);
-        }
+        depositMenu.SetActive(type == BankMenuType.Deposit);
+        withdrawalMenu.SetActive(type == BankMenuType.Withdrawal);
+        sentMenu.SetActive(type == BankMenuType.Sent);
     }
 
     public void ExitMenu() 
@@ -79,6 +81,7 @@ public class PopupBank : MonoBehaviour
         atmMenu.SetActive(true);
         depositMenu.SetActive(false);
         withdrawalMenu.SetActive(false);
+        sentMenu.SetActive(false);
     }
 
     public void SaveAddInputAmount(string text)
@@ -102,10 +105,12 @@ public class PopupBank : MonoBehaviour
 
     public void InitializeBtn()
     {
-        depositBtn.onClick.AddListener(() => EnterMenu(true));
-        withdrawalBtn.onClick.AddListener(() => EnterMenu(false));
+        depositBtn.onClick.AddListener(() => EnterMenu(BankMenuType.Deposit));
+        withdrawalBtn.onClick.AddListener(() => EnterMenu(BankMenuType.Withdrawal));
+        sentBtn.onClick.AddListener(() => EnterMenu(BankMenuType.Sent));
         depositBackBtn.onClick.AddListener(ExitMenu);
         withdrawalBackBtn.onClick.AddListener(ExitMenu);
+        sentBackBtn.onClick.AddListener(ExitMenu);
 
         firstAddBtn.onClick.AddListener(() => Add(firstAmount));
         secondAddBtn.onClick.AddListener(() => Add(secondAmount));
