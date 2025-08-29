@@ -58,7 +58,6 @@ public class GameManager : MonoBehaviour
     public void SighInData(UserData target)
     {
         _currentUserData = target;
-        SaveManager.LoadUserData(_currentUserData.userID);
         popupBank.Refresh(_currentUserData);
     }
 

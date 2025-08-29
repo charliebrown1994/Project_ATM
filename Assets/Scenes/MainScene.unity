@@ -2811,6 +2811,11 @@ MonoBehaviour:
   addInput: {fileID: 2126686460}
   subInput: {fileID: 944608237}
   popupPanel: {fileID: 1008761704}
+  inputInfoPanel: {fileID: 94583216}
+  userInfoPanel: {fileID: 0}
+  sentNumBtn: {fileID: 248398600}
+  sentUserInput: {fileID: 969979603}
+  sentNumInput: {fileID: 2037934966}
   firstAmount: 10000
   secondAmount: 30000
   thirdAmount: 50000
