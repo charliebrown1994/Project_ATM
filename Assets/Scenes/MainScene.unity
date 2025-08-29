@@ -2833,6 +2833,8 @@ MonoBehaviour:
   PWText: {fileID: 1969838253}
   confirmText: {fileID: 588454151}
   sighUpBtn: {fileID: 2028450514}
+  erroPanel: {fileID: 1563846366}
+  sighUpPanel: {fileID: 1487559113}
 --- !u!1 &357986742
 GameObject:
   m_ObjectHideFlags: 0
@@ -10066,7 +10068,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1144784775}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1563846366}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1144784775
 MonoBehaviour:
   m_ObjectHideFlags: 0

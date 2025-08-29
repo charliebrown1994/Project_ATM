@@ -19,8 +19,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public List<UserData> users = new List<UserData>();
-
     [SerializeField] private UserData _currentUserData;
     public UserData currentUserData
     {
@@ -35,9 +33,6 @@ public class GameManager : MonoBehaviour
     {
         InitializeSingleton();
         saveManager = new SaveManager();
-        saveManager.SavePath();
-        saveManager.LoadUserData(ref _currentUserData);
-        popupBank.Refresh(currentUserData);
     }
 
     private void InitializeSingleton()
@@ -54,6 +49,16 @@ public class GameManager : MonoBehaviour
             // 이미 인스턴스가 있으면 자신을 파괴 → 중복 생성 방지
             Destroy(gameObject);
         }
+    }
+
+    public void SighUpData(string id, string name, string pw)
+    {
+        
+    }
+
+    public void SighInData(string id, string pw)
+    {
+
     }
 
     public void AddBtn(int amount)
