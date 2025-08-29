@@ -51,9 +51,9 @@ public class PopupBank : MonoBehaviour
 
     public enum BankMenuType
     {
-        Deposit,    // 입금
-        Withdrawal, // 출금
-        Sent        // 송금
+        Deposit,   
+        Withdrawal, 
+        Sent
     }
 
     private void Start()

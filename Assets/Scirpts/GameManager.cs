@@ -25,14 +25,11 @@ public class GameManager : MonoBehaviour
         get { return _currentUserData; }
     }
 
-    public SaveManager saveManager;
-
     public PopupBank popupBank;
 
     private void Awake()
     {
         InitializeSingleton();
-        saveManager = new SaveManager();
     }
 
     private void InitializeSingleton()
@@ -53,12 +50,14 @@ public class GameManager : MonoBehaviour
 
     public void SighUpData(string id, string name, string pw)
     {
-        
+        _currentUserData = new UserData(id, name, pw);
+        SaveManager.SaveUserData(_currentUserData);
+        popupBank.Refresh(_currentUserData);
     }
 
-    public void SighInData(string id, string pw)
+    public void SighInData(UserData target)
     {
-
+        _currentUserData = target;
     }
 
     public void AddBtn(int amount)
@@ -68,7 +67,7 @@ public class GameManager : MonoBehaviour
             currentUserData.balance += amount;
             currentUserData.cash -= amount;
 
-            saveManager.SaveUserData(currentUserData);
+            SaveManager.SaveUserData(currentUserData);
             popupBank.Refresh(currentUserData);
         }
         else
@@ -84,7 +83,7 @@ public class GameManager : MonoBehaviour
             currentUserData.balance -= amount;
             currentUserData.cash += amount;
 
-            saveManager.SaveUserData(currentUserData);
+            SaveManager.SaveUserData(currentUserData);
             popupBank.Refresh(currentUserData);
         }
         else

@@ -5,20 +5,14 @@ using UnityEngine;
 
 public class SaveManager
 {
-    //public string path;
-
-    //public void SavePath()
-    //{
-    //    path = Path.Combine(Application.persistentDataPath, "userData.json");
-    //}
-    public void SaveUserData(UserData data)
+    public static void SaveUserData(UserData data)
     {
         string path = Path.Combine(Application.persistentDataPath, $"{data.userID}.json");
         string save = JsonUtility.ToJson(data);
         File.WriteAllText(path, save);
 
     }
-    public UserData LoadUserData(string id)
+    public static UserData LoadUserData(string id)
     {
         string path = Path.Combine(Application.persistentDataPath, $"{id}.json");
 
