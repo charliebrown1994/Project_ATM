@@ -2683,6 +2683,7 @@ GameObject:
   - component: {fileID: 338018772}
   - component: {fileID: 338018771}
   - component: {fileID: 338018775}
+  - component: {fileID: 338018776}
   m_Layer: 5
   m_Name: ATMUI
   m_TagString: Untagged
@@ -2815,6 +2816,23 @@ MonoBehaviour:
   thirdAmount: 50000
   addInputAmount: 0
   subInputAmount: 0
+--- !u!114 &338018776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338018770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54a20b505b5134d49a939799cff79ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idText: {fileID: 1461016002}
+  nameText: {fileID: 769204025}
+  PWText: {fileID: 1969838253}
+  confirmText: {fileID: 588454151}
+  sighUpBtn: {fileID: 2028450514}
 --- !u!1 &357986742
 GameObject:
   m_ObjectHideFlags: 0
@@ -9781,7 +9799,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1102535356}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1487559113}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1102535356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14807,7 +14837,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1746105154}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1487559113}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1746105154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15292,7 +15334,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC815\uBCF4\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694"
+  m_text: "\uC815\uBCF4\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694\n(\uBE48\uCE78
+    \uB610\uB294 \uBE44\uBC88 \uBD88\uC77C\uCE58)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ae670c1ee3501944c85b36649f13c68e, type: 2}
   m_sharedMaterial: {fileID: 5144103838193941533, guid: ae670c1ee3501944c85b36649f13c68e, type: 2}
@@ -15319,7 +15362,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50.9
+  m_fontSize: 45.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
