@@ -23,9 +23,20 @@ public class LogInPanel : MonoBehaviour
     [SerializeField] GameObject popupBank;
     [SerializeField] GameObject popupLogin;
 
+    [Header("SentCash")]
+    [SerializeField] Button BackToSighInBtn;
+
     private void Start()
     {
         InitializeBtn();
+    }
+
+    public void ClickBackBtn()
+    {
+        popupBank.SetActive(false);
+        popupLogin.SetActive(true);
+        logInIdText.text = null;
+        logInPWText.text = null;
     }
 
     public void ClickSighUpBtn()
@@ -75,5 +86,6 @@ public class LogInPanel : MonoBehaviour
     {
         sighUpBtn.onClick.AddListener(ClickSighUpBtn);
         logInBtn.onClick.AddListener(ClickSighInBtn);
+        BackToSighInBtn.onClick.AddListener(ClickBackBtn);
     }
 }

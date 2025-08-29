@@ -47,7 +47,6 @@ public class PopupBank : MonoBehaviour
     [SerializeField] TMP_InputField sentUserInput;
     [SerializeField] TMP_InputField sentNumInput;
 
-
     public int firstAmount = 10000;
     public int secondAmount = 30000;
     public int thirdAmount = 50000;
