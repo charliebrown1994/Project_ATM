@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -18,10 +19,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    [SerializeField] private UserData _userData;
-    public UserData userData
+    public List<UserData> users = new List<UserData>();
+
+    [SerializeField] private UserData _currentUserData;
+    public UserData currentUserData
     {
-        get { return _userData; }
+        get { return _currentUserData; }
     }
 
     public SaveManager saveManager;
@@ -33,8 +36,8 @@ public class GameManager : MonoBehaviour
         InitializeSingleton();
         saveManager = new SaveManager();
         saveManager.SavePath();
-        saveManager.LoadUserData(ref _userData);
-        popupBank.Refresh(userData);
+        saveManager.LoadUserData(ref _currentUserData);
+        popupBank.Refresh(currentUserData);
     }
 
     private void InitializeSingleton()
@@ -55,13 +58,13 @@ public class GameManager : MonoBehaviour
 
     public void AddBtn(int amount)
     {
-        if (userData.cash >= amount)
+        if (currentUserData.cash >= amount)
         {
-            userData.balance += amount;
-            userData.cash -= amount;
+            currentUserData.balance += amount;
+            currentUserData.cash -= amount;
 
-            saveManager.SaveUserData(userData);
-            popupBank.Refresh(userData);
+            saveManager.SaveUserData(currentUserData);
+            popupBank.Refresh(currentUserData);
         }
         else
         {
@@ -71,13 +74,13 @@ public class GameManager : MonoBehaviour
 
     public void SubBtn(int amount)
     {
-        if (userData.balance >= amount)
+        if (currentUserData.balance >= amount)
         {
-            userData.balance -= amount;
-            userData.cash += amount;
+            currentUserData.balance -= amount;
+            currentUserData.cash += amount;
 
-            saveManager.SaveUserData(userData);
-            popupBank.Refresh(userData);
+            saveManager.SaveUserData(currentUserData);
+            popupBank.Refresh(currentUserData);
         }
         else
         {
