@@ -11,12 +11,12 @@ public class UserData
     [SerializeField] public int balance;
     [SerializeField] public int cash;
 
-    public UserData(string targetID, string targetName, string targetPW, int targetBalance, int targetCash)
+    public UserData(string targetID, string targetName, string targetPW)
     {
         userID = targetID;
         userName = targetName;
         userPW = targetPW;
-        balance = targetBalance;
-        cash = targetCash;
+        balance = 50000;
+        cash = 100000;
     }
 }

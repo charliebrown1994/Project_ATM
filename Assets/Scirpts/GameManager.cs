@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -18,23 +19,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    [SerializeField] private UserData _userData;
-    public UserData userData
+    [SerializeField] private UserData _currentUserData;
+    public UserData currentUserData
     {
-        get { return _userData; }
+        get { return _currentUserData; }
     }
-
-    public SaveManager saveManager;
 
     public PopupBank popupBank;
 
     private void Awake()
     {
         InitializeSingleton();
-        saveManager = new SaveManager();
-        saveManager.SavePath();
-        saveManager.LoadUserData(ref _userData);
-        popupBank.Refresh(userData);
     }
 
     private void InitializeSingleton()
@@ -53,15 +48,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SighUpData(string id, string name, string pw)
+    {
+        _currentUserData = new UserData(id, name, pw);
+        SaveManager.SaveUserData(_currentUserData);
+        popupBank.Refresh(_currentUserData);
+    }
+
+    public void SighInData(UserData target)
+    {
+        _currentUserData = target;
+        popupBank.Refresh(_currentUserData);
+    }
+
     public void AddBtn(int amount)
     {
-        if (userData.cash >= amount)
+        if (_currentUserData.cash >= amount)
         {
-            userData.balance += amount;
-            userData.cash -= amount;
+            _currentUserData.balance += amount;
+            _currentUserData.cash -= amount;
 
-            saveManager.SaveUserData(userData);
-            popupBank.Refresh(userData);
+            SaveManager.SaveUserData(_currentUserData);
+            popupBank.Refresh(_currentUserData);
         }
         else
         {
@@ -71,13 +79,13 @@ public class GameManager : MonoBehaviour
 
     public void SubBtn(int amount)
     {
-        if (userData.balance >= amount)
+        if (currentUserData.balance >= amount)
         {
-            userData.balance -= amount;
-            userData.cash += amount;
+            currentUserData.balance -= amount;
+            currentUserData.cash += amount;
 
-            saveManager.SaveUserData(userData);
-            popupBank.Refresh(userData);
+            SaveManager.SaveUserData(currentUserData);
+            popupBank.Refresh(currentUserData);
         }
         else
         {

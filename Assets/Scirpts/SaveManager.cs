@@ -5,28 +5,26 @@ using UnityEngine;
 
 public class SaveManager
 {
-    public string path;
-
-    public void SavePath()
+    public static void SaveUserData(UserData data)
     {
-        path = Path.Combine(Application.persistentDataPath, "userData.json");
-    }
-    public void SaveUserData(UserData data)
-    {
+        string path = Path.Combine(Application.persistentDataPath, $"{data.userID}.json");
         string save = JsonUtility.ToJson(data);
         File.WriteAllText(path, save);
 
     }
-    public void LoadUserData(ref UserData data)
+    public static UserData LoadUserData(string id)
     {
+        string path = Path.Combine(Application.persistentDataPath, $"{id}.json");
+
         if (File.Exists(path))
         {
             string load = File.ReadAllText(path);
-            data = JsonUtility.FromJson<UserData>(load);
+            return JsonUtility.FromJson<UserData>(load);
         }
         else
         {
-            data = new UserData("", "ÀÌ½ÂÀ²", "", 50000, 100000);
+            //data = new UserData("", "ÀÌ½ÂÀ²", "", 50000, 100000);
+            return null;
         }
     }
 }

@@ -39,8 +39,14 @@ public class PopupBank : MonoBehaviour
 
     [Header("PopupPanel")]
     [SerializeField] public GameObject popupPanel;
+    [SerializeField] GameObject inputInfoPanel;
+    [SerializeField] GameObject userInfoPanel;
 
-    //[Header("SentCash")]
+    [Header("SentCash")]
+    [SerializeField] Button sentNumBtn;
+    [SerializeField] TMP_InputField sentUserInput;
+    [SerializeField] TMP_InputField sentNumInput;
+
 
     public int firstAmount = 10000;
     public int secondAmount = 30000;
@@ -51,14 +57,47 @@ public class PopupBank : MonoBehaviour
 
     public enum BankMenuType
     {
-        Deposit,    // 입금
-        Withdrawal, // 출금
-        Sent        // 송금
+        Deposit,   
+        Withdrawal, 
+        Sent
     }
 
     private void Start()
     {
         InitializeBtn();
+    }
+
+    public void ClickSentBtn()
+    {
+        if (string.IsNullOrEmpty(sentUserInput.text) || string.IsNullOrEmpty(sentNumInput.text))
+        {
+            inputInfoPanel.SetActive(true);
+        }
+        else
+        {
+            UserData temp = SaveManager.LoadUserData(sentUserInput.text);
+
+            if (temp == null)
+            {
+                userInfoPanel.SetActive(true);
+            }
+            else
+            {
+                int amount = int.Parse(sentNumInput.text);
+                if (GameManager.Instance.currentUserData.balance >= amount)
+                {
+                    temp.balance += amount;
+                    GameManager.Instance.currentUserData.balance -= amount;
+                    Refresh(GameManager.Instance.currentUserData);
+                    SaveManager.SaveUserData(GameManager.Instance.currentUserData);
+                    SaveManager.SaveUserData(temp);
+                }
+                else
+                {
+                    popupPanel.SetActive(true);
+                }
+            }
+        }
     }
 
     public void Refresh(UserData data)
@@ -126,5 +165,6 @@ public class PopupBank : MonoBehaviour
         addInput.onEndEdit.AddListener(SaveAddInputAmount);
         subInput.onEndEdit.AddListener(SaveSubInputAmount);
 
+        sentNumBtn.onClick.AddListener(ClickSentBtn);
     }
 }
