@@ -46,6 +46,8 @@ public class PopupBank : MonoBehaviour
     [SerializeField] Button sentNumBtn;
     [SerializeField] TMP_InputField sentUserInput;
     [SerializeField] TMP_InputField sentNumInput;
+    [SerializeField] Button OkPanelBtn;
+    [SerializeField] GameObject sentSuccessPanel;
 
     public int firstAmount = 10000;
     public int secondAmount = 30000;
@@ -64,6 +66,11 @@ public class PopupBank : MonoBehaviour
     private void Start()
     {
         InitializeBtn();
+    }
+
+    public void ClickOkBtn()
+    {
+        sentSuccessPanel.SetActive(false);
     }
 
     public void ClickSentBtn()
@@ -90,6 +97,9 @@ public class PopupBank : MonoBehaviour
                     Refresh(GameManager.Instance.currentUserData);
                     SaveManager.SaveUserData(GameManager.Instance.currentUserData);
                     SaveManager.SaveUserData(temp);
+                    sentSuccessPanel.SetActive(true);
+                    sentUserInput.text = null;
+                    sentNumInput.text = null;
                 }
                 else
                 {
@@ -165,5 +175,7 @@ public class PopupBank : MonoBehaviour
         subInput.onEndEdit.AddListener(SaveSubInputAmount);
 
         sentNumBtn.onClick.AddListener(ClickSentBtn);
+
+        OkPanelBtn.onClick.AddListener(ClickOkBtn);
     }
 }

@@ -25,6 +25,7 @@ public class LogInPanel : MonoBehaviour
 
     [Header("SentCash")]
     [SerializeField] Button BackToSighInBtn;
+    
 
     private void Start()
     {
