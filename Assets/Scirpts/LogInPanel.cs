@@ -54,7 +54,7 @@ public class LogInPanel : MonoBehaviour
         else
         {
             UserData temp = SaveManager.LoadUserData(logInIdText.text);
-            if (temp != null)
+            if (temp == null)
             {
                 erroPanel.SetActive(true);
             }

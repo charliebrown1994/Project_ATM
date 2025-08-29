@@ -58,17 +58,19 @@ public class GameManager : MonoBehaviour
     public void SighInData(UserData target)
     {
         _currentUserData = target;
+        SaveManager.LoadUserData(_currentUserData.userID);
+        popupBank.Refresh(_currentUserData);
     }
 
     public void AddBtn(int amount)
     {
-        if (currentUserData.cash >= amount)
+        if (_currentUserData.cash >= amount)
         {
-            currentUserData.balance += amount;
-            currentUserData.cash -= amount;
+            _currentUserData.balance += amount;
+            _currentUserData.cash -= amount;
 
-            SaveManager.SaveUserData(currentUserData);
-            popupBank.Refresh(currentUserData);
+            SaveManager.SaveUserData(_currentUserData);
+            popupBank.Refresh(_currentUserData);
         }
         else
         {
